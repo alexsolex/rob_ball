@@ -2,9 +2,9 @@
 My own made, reversed engineered, version of Mira, the robot made by Alonso Martinez
 
 ## Intro
-Rob'Ball is a portmanteau word, composed by the word Rob like in Robot, and the word ball like a ... OK, you know what I mean.
+Rob'Ball (aka Rob' or robby for intimate persons) is a portmanteau word, composed by the word Rob like in Robot, and the word ball like a ... OK, you know what I mean.
 
-Robby is my very own attempt in reproduce the amazin Mira robot made by Alonso Martinez, who used to work for Pixar as animator.
+Robby is my very own attempt in reproduce the amazing Mira robot made by Alonso Martinez, who used to work for Pixar as animator.
 Alonso made Mira a couple of years ago, and I just discovered by watching a Adam Savage’s Tested video last September ( https://www.youtube.com/watch?v=0vfuOW1tsX0 ).
 Mira is so cute, and technically it was very interesting to see how it works and furthermore, how it can be done.
 
@@ -38,3 +38,22 @@ To make living eyes, I used 2 tiny 0.96inch OLED I2C screens. They both are driv
 #### Colors
 I used two WS2812B addressable LEDs (I bought a cheap WS2812B strip led and cutted just two to have the possibility to mix the colors is needed). Those leds are drived directly by arduino.
 
+### Communication
+Raspberry Pi face tracking sends commands to arduino through serial communication (TX/RX pins, not USB as plugs takes too much space :) ). Unfortunately levels signals are not the same (3.3V for Raspberry and 5V for Arduino). So we need a level shifter which will adapt signal level for each side equipments.
+
+### Power supply
+The whole robot is powered with a raspberry pi power supply (5V 2.5A).
+The 5V is dispatched to power raspberry pi through its microUSB plug, power the PCA9685.
+Arduino through Vin needs at least 6V to work properly. So I powered it with a 9v comming from a MT3608 power booster.
+
+## Software
+### Raspberry
+#### Installation
+TODO
+#### Configuration
+TODO
+#### Python script
+TODO
+### Arduino
+#### Software
+TODO
