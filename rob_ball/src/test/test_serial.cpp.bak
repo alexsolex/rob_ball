@@ -1,0 +1,33 @@
+#include "Arduino.h"
+#define LED_PIN 13
+
+void flash(int n)
+{
+  Serial.println(n);
+  for (int i = 0; i < n; i++)
+  {
+    digitalWrite(LED_PIN, HIGH);
+    delay(1000);
+    digitalWrite(LED_PIN, LOW);
+    delay(1000);
+  }
+}
+
+void setup()
+{
+  pinMode(LED_PIN, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+    
+    while(Serial.available()) {
+        //int lu = Serial.read();
+        String s = Serial.readString();
+        Serial.println(s);
+        //flash(lu);
+    }
+    delay(1000);
+}
+
