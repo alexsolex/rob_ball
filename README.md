@@ -22,6 +22,8 @@ At this stage, my mounting is not easy as I would like because it is very hard t
 The robot should be able to move it's head according to 3 axis (turn left/right, go up and down, and tilt right and left), should display it's mood with moves, color lights and sounds. Last but not least, it should recognize faces and follow from look people.
 Mira works on battery... what a challenge ! I decided that Rob' will be powered from external powersupply.
 
+![This is schematic of parts implantation](docs/schematics_ball.png)
+
 ### Face Tracking
 #### Raspberry Pi 3B+ + piCamera
 Python script continuously do face tracking (single face detection). When a face is found, it computes distance and angle from the center of the camera view. Then it sends through serial communication the left/right and up/down angle to move to get the face closer to the center.
