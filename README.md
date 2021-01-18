@@ -1,6 +1,8 @@
 # rob_ball
 My own made, reversed engineered, version of Mira, the robot made by Alonso Martinez
 
+> Diagrams are made with opensource [excalidraw](https://excalidraw.com/)
+
 ## Intro
 Rob'Ball (aka Rob' or robby for intimate persons) is a portmanteau word, composed by the word Rob like in Robot, and the word ball like a ... OK, you know what I mean.
 
