@@ -19,10 +19,15 @@ I designed Rob' using autodesk fusion360. To design the 3 axis mecanics, I got i
 At this stage, my mounting is not easy as I would like because it is very hard to align holes for screw mounting. I may work on a v2 to make it easier to mount and maintain.
 
 ## Architecture
-The robot should be able to move it's head according to 3 axis (turn left/right, go up and down, and tilt right and left), should display it's mood with moves, color lights and sounds. Last but not least, it should recognize faces and follow from look people.
+The robot should be able to move it's head according to 3 axis (turn left/right, go up and down, and tilt right and left), should display it's mood with blinking eyes, moves, color lights and sounds. Last but not least, it should recognize faces and follow from look people.
 Mira works on battery... what a challenge ! I decided that Rob' will be powered from external powersupply.
 
 ![This is schematic of parts implantation](docs/schematic_robball.png)
+
+### Power supply
+The whole robot is powered with a raspberry pi power supply (5V 2.5A).
+The 5V is dispatched to power raspberry pi (through its microUSB plug), and power the PCA9685.
+Arduino through Vin needs at least 6V to work properly. So I powered it with a 9v comming from a MT3608 power booster.
 
 ### Face Tracking
 #### Raspberry Pi 3B+ + piCamera
@@ -34,24 +39,35 @@ When face is lost for a couple of seconds, face tracking mode stops and send a s
 An arduino nano is powered by 9 volts through Vin pin. (9 volt comes from a MT3608 power booster powered by 5V power supply.)
 Arduino nano is responsible for moving the servos, driving addressable leds, and animating eyes.
 #### Servo-motors
-The 3 tiny LKY61 servos are drived by a PCA9685 pwm board. This board handle pwm signals and is drived by I2C communication from arduino.
+The 3 tiny LKY61 servos are driven by a PCA9685 pwm board. This board handle pwm signals and is drived by I2C communication from arduino.
 #### Eyes
-To make living eyes, I used 2 tiny 0.96inch OLED I2C screens. They both are drived on I2C from arduino.
+To make living eyes, I used 2 tiny 0.96inch OLED I2C screens. They both are driven on I2C from arduino.
 #### Colors
-I used two WS2812B addressable LEDs (I bought a cheap WS2812B strip led and cutted just two to have the possibility to mix the colors is needed). Those leds are drived directly by arduino.
+I used two WS2812B addressable LEDs (I bought a cheap WS2812B strip led and cutted just two to have the possibility to mix the colors is needed). Those leds are driven directly by arduino.
 
 ### Communication
 Raspberry Pi face tracking sends commands to arduino through serial communication (TX/RX pins, not USB as plugs takes too much space :) ). Unfortunately levels signals are not the same (3.3V for Raspberry and 5V for Arduino). So we need a level shifter which will adapt signal level for each side equipments.
 
-### Power supply
-The whole robot is powered with a raspberry pi power supply (5V 2.5A).
-The 5V is dispatched to power raspberry pi through its microUSB plug, power the PCA9685.
-Arduino through Vin needs at least 6V to work properly. So I powered it with a 9v comming from a MT3608 power booster.
-
 ## Software
 ### Raspberry
 #### Installation
-TODO
+First start from the PC
+1. Install Raspberry Pi OS
+1. Network configuration
+   1. create wpa_supplicant.conf on the root of your raspberry pi os microSD card containing your wifi network configuration :
+  ```
+  ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=FR
+
+network={
+ ssid="<Name of your wireless LAN>"
+ psk="<Password for your wireless LAN>"
+}
+  ```
+1. setup SSH : create an empty file on the root of your raspberry pi os microSD card named ```ssh``` which will activate SSH.
+
+Now you can boot your raspberry Pi. Insert the microSD card and power the rasperry pi. Wait a couple of seconds and try to find your local ipAddress using for example your wifi router. (Find the best solution over internet tutorials)
 #### Configuration
 TODO
 #### Python script
