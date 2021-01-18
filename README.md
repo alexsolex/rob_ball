@@ -55,16 +55,16 @@ First start from the PC
 1. Install Raspberry Pi OS
 1. Network configuration
    1. create wpa_supplicant.conf on the root of your raspberry pi os microSD card containing your wifi network configuration :
-  ```
+   ```
   ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-update_config=1
-country=FR
+    update_config=1
+    country=FR
 
-network={
- ssid="<Name of your wireless LAN>"
- psk="<Password for your wireless LAN>"
-}
-  ```
+    network={
+    ssid="<Name of your wireless LAN>"
+    psk="<Password for your wireless LAN>"
+    }
+   ```
 1. setup SSH : create an empty file on the root of your raspberry pi os microSD card named ```ssh``` which will activate SSH.
 
 Now you can boot your raspberry Pi. Insert the microSD card and power the rasperry pi. Wait a couple of seconds and try to find your local ipAddress using for example your wifi router. (Find the best solution over internet tutorials)

@@ -325,6 +325,8 @@ void syncMove(int x, int y, int z)
         currentAngles[i] += currentAngles[i] > angle[i] ? -1 : 1;
       }
       //if (currentAngles[i] > angle[i]) currentAngles[i] = angle[i];
+      if (currentAngles[i]>30){currentAngles[i]=30;}
+      if (currentAngles[i]<-30){currentAngles[i]=-30;}
       pwm.setPWM(positions[i], 0, getpwm(currentAngles[i] + homeAngles[i]));
     }
     if (currentAngles[0] == angle[0] && currentAngles[1] == angle[1] && currentAngles[2] == angle[2])
@@ -357,6 +359,8 @@ void servo(int n, int angle)
     if (currentAngles[n] != angle) currentAngles[n] += sens;
     
     //pwm.setPWM(1, 0, getpwm(currentAngles[2]));
+    if (currentAngles[n]>30){currentAngles[n]=30;}
+    if (currentAngles[n]<-30){currentAngles[n]=-30;}
     pwm.setPWM(positions[n], 0, getpwm(currentAngles[n] + homeAngles[n]));
     delay(tempo);
   }
@@ -403,7 +407,9 @@ void syncMoveSetPoint(){
       currentAngles[i] += currentAngles[i] > setpointAngles[i] ? -1 : 1;
     }
     //if (currentAngles[i] > angle[i]) currentAngles[i] = angle[i];
-    
+    if (currentAngles[i]>30){currentAngles[i]=30;}
+    if (currentAngles[i]<-30){currentAngles[i]=-30;}
+
     pwm.setPWM(positions[i], 0, getpwm(currentAngles[i]));
     // switch (i)
     // {
@@ -730,14 +736,13 @@ void setup(void)
   //Init led strips
   FastLED.addLeds<LED_TYPE, stripPin, COLOR_ORDER>(leds, NUM_LEDS);
   FastLED.setBrightness(  BRIGHTNESS );
-
+  leds[0].setHSV( hue, 255, 255);
+  leds[1].setHSV( hue, 255, 255);
 }
 
 void loop(void)
 {
-  // Serial.println("*");
-  // delay(200);
-  //ledScenario();
+  ledScenario();
   recvWithStartEndMarkers(); // serial datas are stored in receivedChars var
   // if (newData){
   //   Serial.println(receivedChars);
