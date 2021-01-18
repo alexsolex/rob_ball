@@ -28,6 +28,7 @@ Mira works on battery... what a challenge ! I decided that Rob' will be powered 
 The whole robot is powered with a raspberry pi power supply (5V 2.5A).
 The 5V is dispatched to power raspberry pi (through its microUSB plug), and power the PCA9685.
 Arduino through Vin needs at least 6V to work properly. So I powered it with a 9v comming from a MT3608 power booster.
+![This is schematic of power supplies](docs/schematic_power_supply.svg)
 
 ### Face Tracking
 #### Raspberry Pi 3B+ + piCamera
